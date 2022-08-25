@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.titleFragment, HeaderFragment.newInstance("-- Nuevo Titulo --"))
+        fragmentTransaction.add(R.id.bodyFragment, BodyFragment.newInstance("TextView 1", "TextView 2", "Botón 1", "Edit Text hint" ))
+
         fragmentTransaction.commit()
 
 
