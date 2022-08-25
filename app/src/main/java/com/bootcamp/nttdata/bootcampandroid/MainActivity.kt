@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.titleFragment, HeaderFragment.newInstance("-- Nuevo Titulo --"))
+        fragmentTransaction.add(R.id.titleFragment, HeaderFragment.newInstance("Bienvenidos al Bootcamp Android"))
         fragmentTransaction.commit()
 
 
