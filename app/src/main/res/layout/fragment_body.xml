@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#008FC4"
+    tools:context=".BodyFragment">
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewBody1"
+        android:gravity="top"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/header" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewBody2"
+        android:gravity="end"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/header" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextBody"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:hint="Edit Text Ejemplo"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBody"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:text="a"/>
+
+
+</FrameLayout>
