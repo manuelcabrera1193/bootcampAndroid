@@ -25,8 +25,14 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.goSecondFirsFragmentButton.setOnClickListener {
-            findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
+        binding.goListGenericFragmentButton.setOnClickListener {
+            findNavController().navigate(R.id.action_firstFragment_to_itemFragment)
+        }
+        binding.goListPersonFragmentButton.setOnClickListener {
+            findNavController().navigate(R.id.action_firstFragment_to_listPersonFragment)
+        }
+        binding.goListCoursesFragmentButton.setOnClickListener {
+            findNavController().navigate(R.id.action_firstFragment_to_coursesFragment)
         }
     }
 

@@ -18,6 +18,15 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@anim/slide_down" />
+        <action
+            android:id="@+id/action_firstFragment_to_listPersonFragment"
+            app:destination="@id/listPersonFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_itemFragment"
+            app:destination="@id/itemFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_coursesFragment"
+            app:destination="@id/coursesFragment" />
 
     </fragment>
 
@@ -28,6 +37,21 @@
         tools:layout="@layout/fragment_second">
 
     </fragment>
+    <fragment
+        android:id="@+id/listPersonFragment"
+        android:name="com.bootcamp.nttdata.bootcampandroid.lists.persons.ListPersonFragment"
+        android:label="fragment_list_person"
+        tools:layout="@layout/fragment_list_person" />
+    <fragment
+        android:id="@+id/itemFragment"
+        android:name="com.bootcamp.nttdata.bootcampandroid.lists.generic.ItemFragment"
+        android:label="fragment_item_list"
+        tools:layout="@layout/fragment_item_list" />
+    <fragment
+        android:id="@+id/coursesFragment"
+        android:name="com.bootcamp.nttdata.bootcampandroid.lists.courses.CoursesFragment"
+        android:label="fragment_list_courses"
+        tools:layout="@layout/fragment_list_courses" />
 
 
 </navigation>

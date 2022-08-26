@@ -7,28 +7,52 @@
     android:background="@color/yellow"
     android:paddingStart="50dp"
     android:paddingTop="300dp"
-    android:paddingEnd="50dp"
-    android:paddingBottom="300dp"
     tools:context=".home.FirstFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/titleFirsFragmentTextView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/title_first_fragment"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/goSecondFirsFragmentButton"
-        android:layout_width="wrap_content"
+        android:id="@+id/goListGenericFragmentButton"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:background="@color/red"
-        android:text="@string/goSecondFragment"
+        android:text="Ir a Lista Generica"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleFirsFragmentTextView" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/goListPersonFragmentButton"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/red"
+        android:text="Ir a Lista de Personas"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goListGenericFragmentButton" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/goListCoursesFragmentButton"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/red"
+        android:text="Ir a Lista de Cursos"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goListPersonFragmentButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
