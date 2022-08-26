@@ -17,17 +17,6 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
 
 
-        /**
-         * Tarea:
-         *
-         * Crear un fragmento que simule el body de la pantalla
-         *
-         * debe considerar lo siguiente :
-         *
-         * El layout raiz se puede usar LinearLayout o ConstraintLayout
-         * Debe tener dos textView, un botón y un edittext
-         *
-         */
 
     }
 }
