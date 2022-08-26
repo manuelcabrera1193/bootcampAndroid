@@ -1,5 +1,6 @@
 package com.bootcamp.nttdata.bootcampandroid
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.AppCompatTextView
@@ -13,8 +14,9 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.titleFragment, HeaderFragment.newInstance("Bienvenidos al Bootcamp Android"))
         fragmentTransaction.commit()
+        //Intent siguiente = new Intent(this,SecondFragment)
+
 
 
 
