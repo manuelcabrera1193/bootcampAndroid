@@ -21,4 +21,10 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="logout">Cerrar Sesión</string>
     <string name="setting_message">Settings Title</string>
+    <string name="title_login">Inicio de Sesión</string>
+    <string name="button_login">Ingresar</string>
+    <string name="hint_user_login">User</string>
+    <string name="hint_pass_login">Password</string>
+    <string name="title_first_fragment">Primer Fragmento</string>
+    <string name="goSecondFragment">Ir</string>
 </resources>
