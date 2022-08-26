@@ -5,13 +5,13 @@
       <map>
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.13789978027343752" />
         <entry key="app/src/main/res/layout/activity_login_acticity.xml" value="0.4115848043690557" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.17255434782608695" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1004641989003057" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.21382090250651048" />
         <entry key="app/src/main/res/layout/activity_main3.xml" value="0.15572916666666667" />
         <entry key="app/src/main/res/layout/activity_navigation.xml" value="0.15572916666666667" />
         <entry key="app/src/main/res/layout/app_bar_navigation.xml" value="0.15572916666666667" />
         <entry key="app/src/main/res/layout/content_navigation.xml" value="0.15572916666666667" />
-        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.24449920654296878" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.15572916666666667" />
         <entry key="app/src/main/res/layout/fragment_header.xml" value="0.32837219238281246" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.15572916666666667" />
