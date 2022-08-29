@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bootcamp.nttdata.bootcampandroid.R
-import com.bootcamp.nttdata.bootcampandroid.databinding.ItemPersonBinding
+import com.bootcamp.nttdata.bootcampandroid.databinding.FragmentItemPersonBinding
 import com.bootcamp.nttdata.bootcampandroid.models.Person
 
 class ListPersonAdapter(private val persons: List<Person>) :
@@ -33,7 +33,7 @@ class ListPersonAdapter(private val persons: List<Person>) :
     override fun getItemCount(): Int = persons.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val binding = ItemPersonBinding.bind(view)
+        val binding = FragmentItemPersonBinding.bind(view)
     }
 
 }

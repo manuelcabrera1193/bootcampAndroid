@@ -55,4 +55,17 @@
         app:layout_constraintTop_toBottomOf="@+id/goListPersonFragmentButton" />
 
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/goDetailFragmentButton"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/red"
+        android:text="Ir a Detalle"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goListCoursesFragmentButton" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

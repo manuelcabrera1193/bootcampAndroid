@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_firstFragment_to_coursesFragment"
             app:destination="@id/coursesFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
 
     </fragment>
 
@@ -52,6 +55,11 @@
         android:name="com.bootcamp.nttdata.bootcampandroid.lists.courses.CoursesFragment"
         android:label="fragment_list_courses"
         tools:layout="@layout/fragment_list_courses" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.bootcamp.nttdata.bootcampandroid.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
 
 
 </navigation>

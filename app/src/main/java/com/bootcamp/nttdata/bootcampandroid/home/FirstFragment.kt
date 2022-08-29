@@ -34,6 +34,9 @@ class FirstFragment : Fragment() {
         binding.goListCoursesFragmentButton.setOnClickListener {
             findNavController().navigate(R.id.action_firstFragment_to_coursesFragment)
         }
+        binding.goDetailFragmentButton.setOnClickListener {
+            findNavController().navigate(R.id.action_firstFragment_to_detailFragment)
+        }
     }
 
 
