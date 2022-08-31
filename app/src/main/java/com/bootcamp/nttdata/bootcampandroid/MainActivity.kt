@@ -1,21 +1,25 @@
 package com.bootcamp.nttdata.bootcampandroid
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import com.bootcamp.nttdata.bootcampandroid.Home.Home
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var button: AppCompatButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        button = findViewById(R.id.button1)
+        button.setOnClickListener{
+            val intent = Intent(this,Home::class.java)
+            startActivity(intent)
 
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.commit()
-        //Intent siguiente = new Intent(this,SecondFragment)
+        }
+
 
 
 

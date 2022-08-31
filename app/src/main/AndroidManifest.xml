@@ -14,7 +14,7 @@
         android:theme="@style/Theme.BootcampAndroid"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
+            android:name=".Home.Home"
             android:exported="true" />
 
         <activity
