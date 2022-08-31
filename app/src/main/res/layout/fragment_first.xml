@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/yellow"
     android:paddingStart="50dp"
-    android:paddingTop="300dp"
+    android:paddingTop="50dp"
     tools:context=".home.FirstFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -66,6 +66,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/goListCoursesFragmentButton" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/goListDogs"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/red"
+        android:text="Ir a Dogs"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goDetailFragmentButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

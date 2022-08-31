@@ -37,6 +37,9 @@ class FirstFragment : Fragment() {
         binding.goDetailFragmentButton.setOnClickListener {
             findNavController().navigate(R.id.action_firstFragment_to_detailFragment)
         }
+        binding.goListDogs.setOnClickListener {
+            findNavController().navigate(R.id.action_firstFragment_to_dogsFragment)
+        }
     }
 
 
