@@ -14,9 +14,6 @@ import kotlinx.coroutines.withContext
 
 class DogsViewModel : ViewModel()  {
 
-
-
-
     private val _dogsState = MutableLiveData<DogsState>()
     val dogsState: LiveData<DogsState> get() = _dogsState
 
@@ -36,7 +33,7 @@ class DogsViewModel : ViewModel()  {
                     .execute()
             }
 
-            Log.i("Movies:", result?.body().toString())
+            Log.i("Dogs:", result?.body().toString())
 
             if (result?.isSuccessful == true) {
                 val detailResponse = with(Gson()) {
@@ -61,13 +58,13 @@ class DogsViewModel : ViewModel()  {
             val result = withContext(Dispatchers.IO) {
                 NetworkManager.Builder()
                     .baseUrl(BASE_URL)
-                    .endpoint("$raza/images")
+                    .endpoint("api/breed/$raza/images")
                     .type(NetworkManager.GET)
                     .build()
                     .execute()
             }
 
-            Log.i("Movies:", result?.body().toString())
+            Log.i("Dogs1:", result?.body().toString())
 
             if (result?.isSuccessful == true) {
                 val detailResponse = with(Gson()) {

@@ -1,6 +1,7 @@
 package com.bootcamp.nttdata.bootcampandroid.dogs
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,15 +11,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bootcamp.nttdata.bootcampandroid.databinding.FragmentDogsBinding
-import java.util.*
+import com.bootcamp.nttdata.bootcampandroid.utils.hideKeyboard
 
-class DogsFragment : Fragment() , androidx.appcompat.widget.SearchView.OnQueryTextListener {
+class DogsFragment : Fragment(), androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
     private lateinit var viewModel: DogsViewModel
 
     private var _binding: FragmentDogsBinding? = null
 
     private val binding get() = _binding!!
+
+    private var textChanged: Boolean = false
 
 
     private lateinit var adapter: DogAdapter
@@ -50,11 +53,13 @@ class DogsFragment : Fragment() , androidx.appcompat.widget.SearchView.OnQueryTe
                 "Ocurrio un error",
                 Toast.LENGTH_LONG
             ).show()
-            DogsState.Loading -> Toast.makeText(
-                requireContext(),
-                "Cargando .... ",
-                Toast.LENGTH_LONG
-            ).show()
+            DogsState.Loading -> {
+                Toast.makeText(
+                    requireContext(),
+                    "Cargando .... ",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
             is DogsState.Success -> {
                 val images = dogsState.dogs ?: emptyList()
                 dogImages.clear()
@@ -63,7 +68,6 @@ class DogsFragment : Fragment() , androidx.appcompat.widget.SearchView.OnQueryTe
                 Toast.makeText(requireContext(), "Success", Toast.LENGTH_LONG).show()
             }
         }
-
     }
 
     private fun initRecyclerView() {
@@ -78,23 +82,23 @@ class DogsFragment : Fragment() , androidx.appcompat.widget.SearchView.OnQueryTe
     }
 
     override fun onQueryTextSubmit(p0: String?): Boolean {
-        if(!p0.isNullOrEmpty()){
-            adapter.clean()
-            viewModel.getDogs(p0.toLowerCase(Locale.ROOT))
+        Log.i("onQueryTextSubmit", "Paso por aqui")
+        if (!p0.isNullOrEmpty()) {
+            viewModel.getDogs(p0.lowercase())
         }
-        else{
-            viewModel.getDogs()
-        }
-
+        hideKeyboard()
         return true
     }
-
 
     override fun onQueryTextChange(p0: String?): Boolean {
-        return true
+        Log.i("onQueryTextChange", "Paso por aqui")
+        textChanged = if (p0.isNullOrEmpty() && textChanged) {
+            viewModel.getDogs()
+            false
+        } else {
+            true
+        }
+        return false
     }
 
-
-
 }
-
