@@ -12,18 +12,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class DogsViewModel : ViewModel() {
+class DogsViewModel : ViewModel()  {
+
+
 
 
     private val _dogsState = MutableLiveData<DogsState>()
     val dogsState: LiveData<DogsState> get() = _dogsState
 
     init {
-        getMovies()
+        getDogs()
     }
 
-
-    private fun getMovies() {
+     fun getDogs() {
         _dogsState.value = DogsState.Loading
         viewModelScope.launch(Dispatchers.Main) {
             val result = withContext(Dispatchers.IO) {
@@ -53,6 +54,38 @@ class DogsViewModel : ViewModel() {
             }
         }
     }
+
+     fun getDogs(raza : String) {
+        _dogsState.value = DogsState.Loading
+        viewModelScope.launch(Dispatchers.Main) {
+            val result = withContext(Dispatchers.IO) {
+                NetworkManager.Builder()
+                    .baseUrl(BASE_URL)
+                    .endpoint("$raza/images")
+                    .type(NetworkManager.GET)
+                    .build()
+                    .execute()
+            }
+
+            Log.i("Movies:", result?.body().toString())
+
+            if (result?.isSuccessful == true) {
+                val detailResponse = with(Gson()) {
+                    this.fromJson(this.toJson(result.body()), DogsResponse::class.java)
+                }
+                _dogsState.value = DogsState.Success(detailResponse.message)
+
+            } else {
+                _dogsState.value = DogsState.Error(
+                    ErrorClass(
+                        result?.code() ?: 0,
+                        result?.message() ?: "Error desconocido"
+                    )
+                )
+            }
+        }
+    }
+
 
     companion object{
 

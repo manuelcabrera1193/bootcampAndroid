@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bootcamp.nttdata.bootcampandroid.R
 
-class DogAdapter(private val images: List<String>) : RecyclerView.Adapter<DogViewHolder>() {
+class DogAdapter(private var images: List<String>) : RecyclerView.Adapter<DogViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -18,5 +18,9 @@ class DogAdapter(private val images: List<String>) : RecyclerView.Adapter<DogVie
     override fun onBindViewHolder(holder: DogViewHolder, position: Int) {
         val item = images[position]
         holder.bind(item)
+    }
+
+    fun clean() {
+        images = mutableListOf()
     }
 }

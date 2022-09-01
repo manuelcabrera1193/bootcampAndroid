@@ -10,8 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bootcamp.nttdata.bootcampandroid.databinding.FragmentDogsBinding
+import java.util.*
 
-class DogsFragment : Fragment() {
+class DogsFragment : Fragment() , androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
     private lateinit var viewModel: DogsViewModel
 
@@ -28,8 +29,11 @@ class DogsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDogsBinding.inflate(inflater, container, false)
+        binding.svDogs.setOnQueryTextListener(this)
         return binding.root
+
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -72,5 +76,25 @@ class DogsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    override fun onQueryTextSubmit(p0: String?): Boolean {
+        if(!p0.isNullOrEmpty()){
+            adapter.clean()
+            viewModel.getDogs(p0.toLowerCase(Locale.ROOT))
+        }
+        else{
+            viewModel.getDogs()
+        }
+
+        return true
+    }
+
+
+    override fun onQueryTextChange(p0: String?): Boolean {
+        return true
+    }
+
+
+
 }
 
