@@ -1,4 +1,4 @@
-package com.bootcamp.nttdata.network
+package com.bootcamp.nttdata.data.network
 
 import kotlinx.coroutines.Deferred
 import retrofit2.Response

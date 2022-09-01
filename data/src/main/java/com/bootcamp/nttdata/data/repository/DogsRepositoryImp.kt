@@ -1,6 +1,5 @@
 package com.bootcamp.nttdata.data.repository
 
-import com.bootcamp.nttdata.data.datastore.DogsDataStore
 import com.bootcamp.nttdata.data.service.DogsService
 import com.bootcamp.nttdata.domain.repository.DogsRepository
 import com.bootcamp.nttdata.models.Dogs

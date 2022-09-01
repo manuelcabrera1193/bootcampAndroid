@@ -2,8 +2,8 @@ package com.bootcamp.nttdata.models
 
 sealed class Failure {
     object NetworkConnection : Failure()
-    object Http : Failure()
+    data class Http(val codeHttp: Int) : Failure()
     object UnExpected : Failure()
-    object ResponseInvalid : Failure()
+    data class ResponseInvalid(val code: Int,val message: String) : Failure()
     object Unauthorized : Failure()
 }

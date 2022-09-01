@@ -1,18 +1,19 @@
 package com.bootcamp.nttdata.bootcampandroid.dogs
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bootcamp.nttdata.bootcampandroid.models.ErrorClass
-import com.bootcamp.nttdata.network.NetworkManager
-import com.google.gson.Gson
+import com.bootcamp.nttdata.data.repository.DogsRepositoryImp
+import com.bootcamp.nttdata.domain.usecase.dogs.GetAllDogsUseCase
+import com.bootcamp.nttdata.models.Failure
+import com.bootcamp.nttdata.models.ResultType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class DogsViewModel : ViewModel()  {
+class DogsViewModel() : ViewModel() {
 
     private val _dogsState = MutableLiveData<DogsState>()
     val dogsState: LiveData<DogsState> get() = _dogsState
@@ -21,73 +22,40 @@ class DogsViewModel : ViewModel()  {
         getDogs()
     }
 
-     fun getDogs() {
+    fun getDogs() {
         _dogsState.value = DogsState.Loading
         viewModelScope.launch(Dispatchers.Main) {
             val result = withContext(Dispatchers.IO) {
-                NetworkManager.Builder()
-                    .baseUrl(BASE_URL)
-                    .endpoint(URL_DOGS)
-                    .type(NetworkManager.GET)
-                    .build()
-                    .execute()
+                val service = DogsRepositoryImp()
+                val resultDogs = GetAllDogsUseCase(service).invoke()
+                resultDogs
             }
-
-            Log.i("Dogs:", result?.body().toString())
-
-            if (result?.isSuccessful == true) {
-                val detailResponse = with(Gson()) {
-                    this.fromJson(this.toJson(result.body()), DogsResponse::class.java)
+            when (result) {
+                is ResultType.Success -> {
+                    _dogsState.value = DogsState.Success(result.value.images)
                 }
-                _dogsState.value = DogsState.Success(detailResponse.message)
+                is ResultType.Error -> {
+                    when (val error = result.value) {
+                        is Failure.Http -> {
+                            _dogsState.value =
+                                DogsState.Error(ErrorClass(error.codeHttp, "Error Http"))
+                        }
+                        Failure.NetworkConnection, Failure.Unauthorized, Failure.UnExpected -> {
+                            _dogsState.value =
+                                DogsState.Error(ErrorClass(0, ""))
+                        }
+                        is Failure.ResponseInvalid -> {
+                            _dogsState.value =
+                                DogsState.Error(ErrorClass(error.code, error.message))
+                        }
+                    }
 
-            } else {
-                _dogsState.value = DogsState.Error(
-                    ErrorClass(
-                        result?.code() ?: 0,
-                        result?.message() ?: "Error desconocido"
-                    )
-                )
+                }
             }
         }
     }
 
-     fun getDogs(raza : String) {
-        _dogsState.value = DogsState.Loading
-        viewModelScope.launch(Dispatchers.Main) {
-            val result = withContext(Dispatchers.IO) {
-                NetworkManager.Builder()
-                    .baseUrl(BASE_URL)
-                    .endpoint("api/breed/$raza/images")
-                    .type(NetworkManager.GET)
-                    .build()
-                    .execute()
-            }
-
-            Log.i("Dogs1:", result?.body().toString())
-
-            if (result?.isSuccessful == true) {
-                val detailResponse = with(Gson()) {
-                    this.fromJson(this.toJson(result.body()), DogsResponse::class.java)
-                }
-                _dogsState.value = DogsState.Success(detailResponse.message)
-
-            } else {
-                _dogsState.value = DogsState.Error(
-                    ErrorClass(
-                        result?.code() ?: 0,
-                        result?.message() ?: "Error desconocido"
-                    )
-                )
-            }
-        }
-    }
-
-
-    companion object{
-
-        const val BASE_URL = "https://dog.ceo/"
-        const val URL_DOGS = "api/breed/hound/images"
+    fun getDogs(raza: String) {
 
     }
 

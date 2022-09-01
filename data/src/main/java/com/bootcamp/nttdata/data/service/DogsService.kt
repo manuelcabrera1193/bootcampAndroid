@@ -3,11 +3,11 @@ package com.bootcamp.nttdata.data.service
 import com.bootcamp.nttdata.data.api.DogsApi
 import com.bootcamp.nttdata.data.datastore.DogsDataStore
 import com.bootcamp.nttdata.data.mapper.toModel
+import com.bootcamp.nttdata.data.network.NetworkManager
 import com.bootcamp.nttdata.data.response.DogsResponse
 import com.bootcamp.nttdata.models.Dogs
 import com.bootcamp.nttdata.models.Failure
 import com.bootcamp.nttdata.models.ResultType
-import com.bootcamp.nttdata.network.NetworkManager
 import com.google.gson.Gson
 
 
@@ -30,7 +30,12 @@ class DogsService : DogsDataStore {
                     }
                 ResultType.Success(dogsResponse.toModel())
             } else {
-                ResultType.Error(Failure.ResponseInvalid)
+                ResultType.Error(
+                    Failure.ResponseInvalid(
+                        response?.code() ?: 0,
+                        response?.message() ?: "Error desconocido"
+                    )
+                )
             }
         } catch (e: Exception) {
             ResultType.Error(Failure.UnExpected)

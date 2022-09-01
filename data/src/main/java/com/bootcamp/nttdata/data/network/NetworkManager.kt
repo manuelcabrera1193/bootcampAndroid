@@ -1,4 +1,4 @@
-package com.bootcamp.nttdata.network
+package com.bootcamp.nttdata.data.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Interceptor
