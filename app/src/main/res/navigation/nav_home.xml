@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home"
+    app:startDestination="@id/firstFragment">
+
+    <fragment
+        android:id="@+id/firstFragment"
+        android:name="com.bootcamp.nttdata.bootcampandroid.home.FirstFragment"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_first">
+
+        <action
+            android:id="@+id/action_firstFragment_to_secondFragment"
+            app:destination="@id/secondFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@anim/slide_down" />
+        <action
+            android:id="@+id/action_firstFragment_to_listPersonFragment"
+            app:destination="@id/listPersonFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_itemFragment"
+            app:destination="@id/itemFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_coursesFragment"
+            app:destination="@id/coursesFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_dogsFragment"
+            app:destination="@id/dogsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.bootcamp.nttdata.bootcampandroid.home.SecondFragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_second">
+
+    </fragment>
+    <fragment
+        android:id="@+id/listPersonFragment"
+        android:name="com.bootcamp.nttdata.bootcampandroid.lists.persons.ListPersonFragment"
+        android:label="fragment_list_person"
+        tools:layout="@layout/fragment_list_person" />
+    <fragment
+        android:id="@+id/itemFragment"
+        android:name="com.bootcamp.nttdata.bootcampandroid.lists.generic.ItemFragment"
+        android:label="fragment_item_list"
+        tools:layout="@layout/fragment_item_list" />
+    <fragment
+        android:id="@+id/coursesFragment"
+        android:name="com.bootcamp.nttdata.bootcampandroid.lists.courses.CoursesFragment"
+        android:label="fragment_list_courses"
+        tools:layout="@layout/fragment_list_courses" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.bootcamp.nttdata.bootcampandroid.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
+    <fragment
+        android:id="@+id/dogsFragment"
+        android:name="com.bootcamp.nttdata.bootcampandroid.dogs.DogsFragment"
+        android:label="DogsFragment" />
+
+
+</navigation>
