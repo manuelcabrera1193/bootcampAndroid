@@ -2,9 +2,8 @@ package com.bootcamp.nttdata.data.network
 
 import com.bootcamp.nttdata.data.di.RetrofitModule.getRetrofit
 import retrofit2.Response
-import javax.inject.Inject
 
-class NetworkManager @Inject private constructor(
+class NetworkManager private constructor(
     private var baseUrl: String?,
     private var timeout: Long? = 1,
     private var endpoint: String = "",

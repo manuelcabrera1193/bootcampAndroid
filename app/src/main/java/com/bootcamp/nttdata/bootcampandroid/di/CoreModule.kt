@@ -22,17 +22,3 @@ abstract class CoreModule {
     ): DogsRepository
 
 }
-
-
-@Module
-@InstallIn(SingletonComponent::class)
-class IDogs {
-
-    @Provides
-    @Singleton
-    fun providerGetDogs(): Dogs {
-        val list = mutableListOf<String>("doberman", "pitbull")
-        return Dogs(images = list)
-    }
-
-}

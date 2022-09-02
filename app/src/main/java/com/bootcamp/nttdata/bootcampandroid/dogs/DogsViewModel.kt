@@ -1,15 +1,11 @@
 package com.bootcamp.nttdata.bootcampandroid.dogs
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bootcamp.nttdata.bootcampandroid.models.ErrorClass
-import com.bootcamp.nttdata.data.repository.DogsRepositoryImp
-import com.bootcamp.nttdata.data.service.DogsService
 import com.bootcamp.nttdata.domain.usecase.dogs.GetAllDogsUseCase
-import com.bootcamp.nttdata.models.Dogs
 import com.bootcamp.nttdata.domain.usecase.dogs.GetForRazaUseCase
 import com.bootcamp.nttdata.models.Failure
 import com.bootcamp.nttdata.models.ResultType
