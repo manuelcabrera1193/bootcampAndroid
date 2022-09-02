@@ -22,7 +22,7 @@ class DogsRepositoryImp @Inject constructor(private val dogsService: DogsService
     }
 
     override suspend fun getDogs(raza: String) : ResultType<Dogs, Failure> {
-        val dogsService = DogsService()
+//        val dogsService = DogsService()
         return dogsService.getDogs(raza)
     }
 }
