@@ -1,5 +1,6 @@
 package com.bootcamp.nttdata.bootcampandroid.dogs
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,14 +8,18 @@ import androidx.lifecycle.viewModelScope
 import com.bootcamp.nttdata.bootcampandroid.models.ErrorClass
 import com.bootcamp.nttdata.data.repository.DogsRepositoryImp
 import com.bootcamp.nttdata.domain.usecase.dogs.GetAllDogsUseCase
+import com.bootcamp.nttdata.models.Dogs
 import com.bootcamp.nttdata.domain.usecase.dogs.GetForRazaUseCase
 import com.bootcamp.nttdata.models.Failure
 import com.bootcamp.nttdata.models.ResultType
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class DogsViewModel() : ViewModel() {
+@HiltViewModel
+class DogsViewModel @Inject constructor(private val getAllDogsUseCase: GetAllDogsUseCase, private val dogs: Dogs) : ViewModel() {
 
     private val _dogsState = MutableLiveData<DogsState>()
     val dogsState: LiveData<DogsState> get() = _dogsState
@@ -24,12 +29,11 @@ class DogsViewModel() : ViewModel() {
     }
 
     fun getDogs() {
+        Log.i("dogs vm: ", dogs.toString())
         _dogsState.value = DogsState.Loading
         viewModelScope.launch(Dispatchers.Main) {
             val result = withContext(Dispatchers.IO) {
-                val service = DogsRepositoryImp()
-                val resultDogs = GetAllDogsUseCase(service).invoke()
-                resultDogs
+                getAllDogsUseCase.invoke()
             }
             when (result) {
                 is ResultType.Success -> {

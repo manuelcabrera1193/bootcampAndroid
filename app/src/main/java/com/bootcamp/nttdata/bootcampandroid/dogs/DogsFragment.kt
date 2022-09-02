@@ -7,15 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bootcamp.nttdata.bootcampandroid.databinding.FragmentDogsBinding
 import com.bootcamp.nttdata.bootcampandroid.utils.hideKeyboard
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DogsFragment : Fragment(), androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
-    private lateinit var viewModel: DogsViewModel
+    private val viewModel: DogsViewModel by viewModels()
 
     private var _binding: FragmentDogsBinding? = null
 
@@ -41,7 +43,7 @@ class DogsFragment : Fragment(), androidx.appcompat.widget.SearchView.OnQueryTex
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
-        viewModel = ViewModelProvider(this)[DogsViewModel::class.java]
+//        viewModel = ViewModelProvider(this)[DogsViewModel::class.java]
         viewModel.dogsState.observe(viewLifecycleOwner, Observer(::dogsEvents))
     }
 

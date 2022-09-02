@@ -1,15 +1,10 @@
 package com.bootcamp.nttdata.data.network
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
+import com.bootcamp.nttdata.data.di.RetrofitModule.getRetrofit
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-class NetworkManager private constructor(
+class NetworkManager @Inject private constructor(
     private var baseUrl: String?,
     private var timeout: Long? = 1,
     private var endpoint: String = "",
@@ -56,65 +51,9 @@ class NetworkManager private constructor(
         const val PATCH_FORM = 7
     }
 
-    private fun getRetrofit(): Retrofit? {
-        baseUrl?.let {
-            val retrofitBuilder = Retrofit.Builder().baseUrl(it)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-
-            retrofitBuilder.client(getOkHttpClient())
-            return retrofitBuilder.build()
-        }
-        return null
-    }
-
-    private fun getOkHttpClient(
-    ): OkHttpClient {
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-
-        /*
-        httpLoggingInterceptor.level = if (BuildConfig.DEBUG)
-            HttpLoggingInterceptor.Level.BODY
-        else
-            HttpLoggingInterceptor.Level.NONE
-            */
-
-        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-
-        val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-
-        okHttpClientBuilder.connectTimeout(timeout!!, TimeUnit.MINUTES)
-        okHttpClientBuilder.readTimeout(timeout!!, TimeUnit.MINUTES)
-
-        val header = header
-
-        if (header != null && header.isNotEmpty()) {
-            okHttpClientBuilder.addInterceptor(getInterceptor(header))
-        }
-
-        okHttpClientBuilder.addInterceptor(httpLoggingInterceptor)
-
-        return okHttpClientBuilder.build()
-    }
-
-    private fun getInterceptor(header: Map<String, String>?): Interceptor {
-
-        return Interceptor { chain ->
-            var request = chain.request()
-
-            if (header != null && header.isNotEmpty()) {
-                for ((key, value) in header) {
-                    request = request.newBuilder().addHeader(key, value).build()
-                }
-            }
-            val originalResponse = chain.proceed(request)
-            originalResponse.newBuilder().build()
-        }
-    }
-
 
     suspend fun execute(): Response<Any>? {
-        getRetrofit()?.let {
+        getRetrofit(baseUrl, timeout, header)?.let {
             return when (type) {
                 GET ->
                     it.create(IService::class.java).get(endpoint).await()
