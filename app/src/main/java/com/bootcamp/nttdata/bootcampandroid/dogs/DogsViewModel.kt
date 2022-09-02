@@ -41,7 +41,7 @@ class DogsViewModel @Inject constructor(private val getAllDogsUseCase: GetAllDog
                             _dogsState.value =
                                 DogsState.Error(ErrorClass(error.codeHttp, "Error Http"))
                         }
-                        Failure.NetworkConnection, Failure.Unauthorized, Failure.UnExpected -> {
+                        is Failure.Local, Failure.NetworkConnection, Failure.Unauthorized, Failure.UnExpected -> {
                             _dogsState.value =
                                 DogsState.Error(ErrorClass(0, ""))
                         }
@@ -49,6 +49,7 @@ class DogsViewModel @Inject constructor(private val getAllDogsUseCase: GetAllDog
                             _dogsState.value =
                                 DogsState.Error(ErrorClass(error.code, error.message))
                         }
+
                     }
 
                 }
@@ -78,6 +79,10 @@ class DogsViewModel @Inject constructor(private val getAllDogsUseCase: GetAllDog
                         is Failure.ResponseInvalid -> {
                             _dogsState.value =
                                 DogsState.Error(ErrorClass(error.code, error.message))
+                        }
+                        else -> {
+                            _dogsState.value =
+                                DogsState.Error(ErrorClass(0, ""))
                         }
                     }
                 }

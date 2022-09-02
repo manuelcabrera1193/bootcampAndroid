@@ -11,8 +11,6 @@ import com.google.gson.Gson
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
-@Singleton
 class DogsService @Inject constructor() {
 
     suspend fun getDogs(): ResultType<Dogs, Failure> {
