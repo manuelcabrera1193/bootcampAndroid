@@ -8,26 +8,26 @@ import com.bootcamp.nttdata.models.ResultType
 import javax.inject.Inject
 import javax.inject.Provider
 
-class GetAllDogsUseCase @Inject constructor(private val dogsRepository: Provider<DogsRepository>) {
-    suspend fun invoke(): ResultType<Dogs, Failure> {
+class GetAllDogsUseCase @Inject constructor(private val dogsRepository: DogsRepository) {
+    suspend operator fun invoke(): ResultType<Dogs, Failure> {
 
-        return when (val dogsApi = dogsRepository.get().getDogsApi()) {
+        return when (val dogsApi = dogsRepository.getDogsApi()) {
             is ResultType.Error -> validateLocal()
             is ResultType.Success -> {
                 Log.i("Dogs:", "Data desde ${dogsApi.value.origin}")
                 if (dogsApi.value.images.isNotEmpty()) {
-                    dogsRepository.get().deleteAllDogs()
-                    dogsRepository.get().insertDao(dogsApi.value)
+                    dogsRepository.deleteAllDogs()
+                    dogsRepository.insertDao(dogsApi.value)
                     dogsApi
                 } else {
-                    dogsRepository.get().getDogsDao()
+                    dogsRepository.getDogsDao()
                 }
             }
         }
     }
 
     private suspend fun validateLocal(): ResultType<Dogs, Failure> {
-        return when (val dataLocal = dogsRepository.get().getDogsDao()) {
+        return when (val dataLocal = dogsRepository.getDogsDao()) {
             is ResultType.Error,
             is ResultType.Success -> {
                 Log.i("Dogs:", "Data desde ${dataLocal}")

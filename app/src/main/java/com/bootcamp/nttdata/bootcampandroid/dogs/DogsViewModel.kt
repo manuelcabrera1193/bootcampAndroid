@@ -29,7 +29,7 @@ class DogsViewModel @Inject constructor(private val getAllDogsUseCase: GetAllDog
         _dogsState.value = DogsState.Loading
         viewModelScope.launch(Dispatchers.Main) {
             val result = withContext(Dispatchers.IO) {
-                getAllDogsUseCase.invoke()
+                getAllDogsUseCase()
             }
             when (result) {
                 is ResultType.Success -> {
@@ -60,7 +60,7 @@ class DogsViewModel @Inject constructor(private val getAllDogsUseCase: GetAllDog
     fun getDogs(raza: String) {
         viewModelScope.launch(Dispatchers.Main){
             val result = withContext(Dispatchers.IO){
-                getForRazaUseCase.invoke(raza)
+                getForRazaUseCase(raza)
             }
             when (result){
                 is ResultType.Success -> {

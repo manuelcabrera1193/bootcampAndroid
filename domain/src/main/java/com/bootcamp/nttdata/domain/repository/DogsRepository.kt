@@ -10,6 +10,6 @@ interface DogsRepository {
     suspend fun getDogsDao() : ResultType<Dogs, Failure>
     suspend fun insertDao(dogs: Dogs)
     suspend fun deleteAllDogs()
-    suspend fun getDogs(raza: String) : ResultType<Dogs, Failure>
+    suspend fun getDogsForRaza(raza: String) : ResultType<Dogs, Failure>
 
 }

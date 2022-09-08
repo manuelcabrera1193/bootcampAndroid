@@ -5,8 +5,7 @@ import com.bootcamp.nttdata.models.Dogs
 import com.bootcamp.nttdata.models.Failure
 import com.bootcamp.nttdata.models.ResultType
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class GetForRazaUseCase @Inject constructor(private val dogsRepository: DogsRepository) {
-    suspend fun invoke(raza: String): ResultType<Dogs, Failure> = dogsRepository.getDogs(raza)
+    suspend operator fun invoke(raza: String): ResultType<Dogs, Failure> = dogsRepository.getDogsForRaza(raza)
 }
